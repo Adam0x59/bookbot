@@ -1,30 +1,47 @@
 
 
 def get_num_words(filepath):
-    #Read file into a variable
+    #create file contents variable
     with open(filepath) as f:
         file_contents = f.read()
     #Split string into list of words
     file_string_list = file_contents.split()
     #Get number of words in list
     word_count = len(file_string_list)
-    '''
-    for word in file_string_list:
-        word_count +=1
-    '''
-    #Print number of words in list to stdout
-    print(f"{word_count} words found in the document") 
+    #Return word_count and file_contents
+    return word_count, file_contents
 
-def get_char_nums(filepath):
-    char_list = []
-    with open(filepath) as f:
-        char_list = list(f.read())
+def get_char_nums(file_contents):
+    #Create dictionary to store counts
     char_numbers = {}
-    for char in char_list:
+    #Iterate through charecters in file_contents string
+    for char in file_contents:
+        #Convert character to lowercase if required
         char = char.lower()
+        #Check dictionary to see if character key exists
         if char in char_numbers:
+            #Increment key's value if it exists
             char_numbers[char] += 1
+        #If character does not exist as a key create the key    
         else:
+            #Create missing key, set value to 1
             char_numbers[char] = 1
-    sorted_char_numbers = dict(sorted(char_numbers.items()))
-    print(sorted_char_numbers)
+    #Return the dictionary of character keys and their counts        
+    return char_numbers
+
+
+def sorted_list(char_numbers):
+    #Create empty list to store dictionaries
+    sorted_char_numbers = []
+    #Iterate through dictionary of char_numbers
+    for char in char_numbers:
+        #Populate list with dictonaries
+        sorted_char_numbers.append({"char":char, "num":char_numbers[char]})
+    #A function to return dictionary value from given key for .sort(function)
+    #.sort requires keyword arguments...
+    def sort_on(dict):
+        return dict["num"]
+    #Sort list of dictionaries in descending order based on "num" key
+    sorted_char_numbers.sort(reverse=True, key=sort_on)
+    #return the sorted list
+    return sorted_char_numbers
