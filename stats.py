@@ -1,4 +1,5 @@
-
+import statistics
+import string
 
 def get_num_words(filepath):
     #create file contents variable
@@ -45,3 +46,13 @@ def sorted_list(char_numbers):
     sorted_char_numbers.sort(reverse=True, key=sort_on)
     #return the sorted list
     return sorted_char_numbers
+
+def get_average_word_length(file_contents):
+    #Remove punctuation from the string
+    translator = str.maketrans('', '', string.punctuation)
+    clean_text = file_contents.translate(translator)
+    #Create a list of words
+    word_list = clean_text.split()
+    #count words in the list
+    word_char_count_list = [len(word) for word in word_list]
+    return statistics.mean(word_char_count_list) if word_char_count_list else 0

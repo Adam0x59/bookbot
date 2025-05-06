@@ -8,7 +8,7 @@ Takes a text file containing the text of a book, outputs the wordcount and a cou
 
 Additional feature goal: To get a little more experience here are some feature ideas I MAY add...
 
- - Average word Length
- - Average sentence Length
- - 10 Most common words used
- - 10 Least common words used
+ - [x] Average word Length
+ - [ ] Average sentence Length
+ - [ ] 10 Most common words used
+ - [ ] 10 Least common words used
