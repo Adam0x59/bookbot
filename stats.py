@@ -1,5 +1,6 @@
 import statistics
 import string
+import re
 
 def get_num_words(filepath):
     #create file contents variable
@@ -56,3 +57,21 @@ def get_average_word_length(file_contents):
     #count words in the list
     word_char_count_list = [len(word) for word in word_list]
     return statistics.mean(word_char_count_list) if word_char_count_list else 0
+
+def get_average_sentence_length(file_contents):
+    # Split on period, exclamation mark, or question mark followed by space or end of text
+    sentences = re.split(r'[.!?](?:\s|$)', file_contents)
+    # Remove empty or whitespace-only strings
+    sentences = [s.strip() for s in sentences if s.strip()]
+    # Avoid division by zero
+    if not sentences:
+        return 0 
+    # Count and accumulator init
+    sentence_count = 0
+    sentence_lenght_accumulator = 0
+    # Calculate averages and return.
+    for sentence in sentences:
+        sentence_count += 1
+        sentence_lenght_accumulator += len(sentence.split())
+    return sentence_lenght_accumulator / sentence_count
+

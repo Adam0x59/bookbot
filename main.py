@@ -19,6 +19,7 @@ def main():
 
         #Get average word length
         average_word_length = stats.get_average_word_length(file_contents)
+        average_sentence_length = stats.get_average_sentence_length(file_contents)
         
         # Display formatted results
         print("============ BOOKBOT ============")
@@ -26,7 +27,9 @@ def main():
         print("----------- Word Count ----------")
         print(f"Found {word_count} total words")
         print("------ Average Word Length ------")
-        print(f"Average Word Length: {average_word_length}") 
+        print(f"Average Word Length: {average_word_length}")
+        print("---- Average sentence Length ----")
+        print(f"Average Sentence Length: {average_sentence_length}") 
         print("--------- Character Count -------")
         for char in sorted_char_numbers:
             if (char["char"]).isalpha() == True:
